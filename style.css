@@ -1,0 +1,300 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-family: var(--fontFam);
+    cursor: none;
+    color: var(--fontCol);
+}
+
+:root {
+    --mainCol: #A5FFBE;
+    --background: #F8F8F8;
+    --fontCol: #4A4A4A;
+    --fontFam: 'Mukta', sans-serif;
+    --fontColTitles: #000000;
+    --fontFamTitles: 'Titillium Web', sans-serif;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+    background-color: var(--background);
+}
+
+#fader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    pointer-events: none;
+    background: white;
+}
+
+#pointer {
+    /*custom cursor essential proprieties*/
+    position: fixed;
+    display: inline-block;
+    pointer-events: none;
+    z-index: 999;
+    /*custom cursor occasional proprieties*/
+    height: 0.5rem;
+    font-size: 2rem;
+    color: var(--mainCol);
+    background-color: var(--mainCol);
+/*    mix-blend-mode: hard-light;*/
+    
+    transition: scale 2s ease;
+/*
+    -webkit-transition: height 2s ease;
+    -moz-transition: height 2s ease;
+    -o-transition: height 2s ease;
+    transition: height 2s ease;
+*/
+}
+
+#pointer.animate {
+    transform: scale(2.6);
+}
+
+#pointer_follower {
+    /*custom cursor essential proprieties*/
+    position: fixed;
+    display: inline-block;
+    pointer-events: none;
+    z-index: 2;
+    /*custom cursor occasional proprieties*/
+    height: 0px;
+    opacity: 0;
+    background-color: var(--mainCol); 
+    box-shadow: 0rem 0rem 3rem 3rem var(--mainCol);
+    
+    transform: scale(1);
+    transition: scale 2s ease;
+    
+}
+
+#pointer_follower.animate {
+    transform: scale(0.5);
+}
+
+#back {
+    position: fixed;
+    z-index: 88;
+    margin: 2rem;
+    background-color: var(--mainCol);
+    min-height: 2rem;
+    font-size: 1rem;
+    align-items: center;
+    color: #fff;
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+}
+
+    
+
+        /*GENERAL ELEMENTS*/
+
+html, body {
+  overscroll-behavior: none;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+h1 { font-size: 3.7rem; font-family: var(--fontFamTitles); }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.3rem; padding-bottom: 1.3rem; text-shadow: 2px 2px var(--mainCol);}
+p { font-size: 1rem; line-height: 1.5rem; max-width: 30%; padding-bottom: 1rem;}
+span { text-shadow: 2px 2px var(--mainCol); }
+a { color: var(--fontCol); background-color: var(--mainCol); text-decoration: none;}
+ul {margin: -1%;}
+
+img {
+    max-height: 100%;
+    max-width: 70%;
+    padding-left: 4rem;
+    image-resolution: 70dpi;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+        /*GENERAL CLASSES*/
+
+.round { border-radius: 50%;}
+
+.mainer {
+    height: 100%;
+    width: 100%;
+    padding: 4rem;
+}
+
+.center {
+    align-items: center;
+}
+
+/**
+  * important: keep position fixed, you can however use top:0 instead of bottom:0
+  * if you want to make it stick to the top of the browser
+  */
+.scroll
+{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.project-label {
+    padding: 0px;
+}
+
+        /*MAIN CONTAINER*/
+
+#main {
+	margin: auto;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 100%;
+}
+ 
+        /*HELLO STRANGER*/
+
+#cover {align-items: flex-start; margin-left: 6rem;}
+#cover h1 { padding-bottom: 1vh; }
+#cover p { padding: 3rem; }
+
+        /*⁄PRESENTATION*/
+
+.columns {
+    height: 100%;
+    width: 100%;
+    flex-flow: column wrap;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.row {
+    flex-flow: row wrap;
+    padding: 2rem;
+}
+
+.row a {
+    margin: 0.25rem;
+    padding: 2rem;
+}
+
+
+        /*⁄PROJECTS*/
+
+#projects{
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: space-around;
+    align-content: center;
+}
+
+.project {
+    margin: 1%;
+    height: 30%;
+    overflow: hidden;
+    transition-duration: 1s;
+}
+
+.project:hover {
+    border-radius: 100%;
+    box-shadow: 0rem 0rem 6rem 0rem var(--mainCol);
+}
+
+.project-label {
+    position: absolute;
+    text-align: center;
+    display: none;
+    font-family: var(--fontFamTitles);
+/*    font-weight: bold;*/
+    font-size: 1rem;
+    transition-duration: 1s;
+}
+
+.project:hover .project-label {
+    display: block;
+}
+
+.project span {
+    font-size: 1rem;
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: center no-repeat;
+    background-size: cover;
+    opacity: 0.8;
+    transition-duration: 0.5s;
+}
+
+.project:hover .project-image {
+    opacity: 0.2;
+}
+
+
+
+        /*⁄PROTOTYPES VISUAL SETTINGS*/
+
+.prototype {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.mobileFrame {
+    pointer-events: none;
+    position: absolute;
+    height: 100%;
+    width: 10%;
+    background-image: url(media/images/iphone.png);
+    background: center no-repeat;
+    background-size: contain;
+}
+
+iframe {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    border-style: none;
+}
+
+
+        /*ENDS & CONTACTS*/
+
+.fa{
+    transition-duration: 1.5s;
+}
+
+.fa:hover {
+    border-radius: 100%;
+}
+
+        /*RIGHTS ON BOTTOM*/
+
+#bottom {
+    position: fixed;
+    background-color: var(--background);
+    width: 100%;
+    bottom: 0;
+    padding-bottom: 1rem;
+    align-items: center;
+}
+
+#bottom p {
+    font-size: 0.7rem;
+    opacity: 0.6;
+}
